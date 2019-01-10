@@ -7,59 +7,60 @@ public class FileTree {
 	private final FileNode rootFileNode;
 	private boolean initialized = false;
 
-	public FileTree(final String rootDir) {
-		if (rootDir == null) {
-			throw new IllegalArgumentException();
+	public FileTree(final String rootDirPath) {
+		if (rootDirPath == null) {
+			throw new IllegalArgumentException("경로를 잘못 입력하였습니다.");
 		}
-		this.rootFileNode = new FileNode(new File(rootDir));
+		if (!new File(rootDirPath).exists()) {
+			throw new NullPointerException("존재하지 않는 경로입니다.");
+		}	
+		this.rootFileNode = new FileNode(new File(rootDirPath));
 	}
 
-	public FileTree(final File rootDir) {
-		if (rootDir == null) {
-			throw new IllegalArgumentException();
+	public FileTree(final File rootDirFile) {
+		if (rootDirFile == null) {
+			throw new IllegalArgumentException("파일을 잘못 입력하였습니다.");
 		}
-		this.rootFileNode = new FileNode(rootDir);
+		if (!rootDirFile.exists()) {
+			throw new NullPointerException("존재하지 않는 파일입니다.");
+		}
+		this.rootFileNode = new FileNode(rootDirFile);
 	}
 
 	public FileTree(final FileNode rootFileNode) {
 		if (rootFileNode == null) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("파일 노드를 잘못 입력하였습니다.");
 		}
 		this.rootFileNode = rootFileNode;
 	}
-	
+
 	public synchronized void initialize() {
-		if(initialized) {
+		if (initialized) {
 			return;
 		}
-		rootFileNode.removeChildren();
-		addChildrenRecursively(rootFileNode);
-		initialized = true;
+		this.rootFileNode.removeChilderen();
+		addChildrenRecursively(this.rootFileNode);
+		this.initialized = true;
 	}
 
-	//getRootNode 留뚮뱾湲�
-	public FileNode getRootFileNode() {
-		if(!initialized) {
-			initialize();
-		}
-		
-		return rootFileNode;
-	}
-	
 	private void addChildrenRecursively(FileNode parentNode) {
 
-		File[] childrenFile = parentNode.getFile().listFiles();
+		File[] childrenFiles = parentNode.getFile().listFiles();
+		int depth = parentNode.getDepth();
 
-		for (File child : childrenFile) {
+		for (File child : childrenFiles) {
 			if(child.isFile()) {
 				continue;
 			}
-
-			addChildrenRecursively(parentNode.addChild(child, parentNode.getDepth()+1));
+			addChildrenRecursively(parentNode.addChild(child, depth+1));
 		}
 	}
-
-//	public String toString() {
-//		return StringFileNode.fileNodeToString(FileTree);
-//	}
+	
+	public FileNode getRootNode() {
+		if (!initialized) {
+			initialize();
+		}
+		return this.rootFileNode;
+	}
+	
 }

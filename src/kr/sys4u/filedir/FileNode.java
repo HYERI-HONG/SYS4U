@@ -16,48 +16,39 @@ public class FileNode {
 		}
 		this.file = file;
 		this.children = new ArrayList<>();
-		this.depth = 0;
 	}
 	
-	public FileNode(final String file) {
-		if (file == null) {
-			throw new IllegalArgumentException();
-		}
-		this.file = new File(file);
-		this.children = new ArrayList<>();
-		this.depth = 0;
-	}
-
 	public File getFile() {
 		return file;
 	}
-
-	public void setDepth(int depth) {
-		this.depth = depth;
-	}
-
+	
 	public int getDepth() {
 		return depth;
 	}
+	
+	public List<FileNode> getChildren() {
+		List<FileNode> cloned = new ArrayList<>();
+		cloned.addAll(this.children);
+		return cloned;
+	}
+	
+	public void setDepth(final int depth) {
+		this.depth = depth;
+	}
 
-	public FileNode addChild(File child) {
+	public FileNode addChild(final File child, final int depth) {
 		FileNode childNode = new FileNode(child);
-		addChild(childNode);
+		addChild(childNode, depth);
 		return childNode;
 	}
-	
-	public FileNode addChild(File child, int depth) {
-		FileNode childNode = new FileNode(child);
-		childNode.setDepth(depth);
-		addChild(childNode);
-		return childNode;
-	}
-	
-	public boolean addChild(FileNode child) {
-		if (child == null) {
+
+	public boolean addChild(final FileNode childNode, final int depth) {
+		if (childNode == null) {
 			throw new IllegalArgumentException();
 		}
-		return this.children.add(child);
+		childNode.setDepth(depth);
+
+		return this.children.add(childNode);
 	}
 
 	public boolean addChildren(Collection<FileNode> children) {
@@ -66,14 +57,9 @@ public class FileNode {
 		}
 		return this.children.addAll(children);
 	}
-
-	public List<FileNode> getChildren(){
-		List<FileNode> cloned = new ArrayList<>();
-		cloned.addAll(this.children);
-		return cloned;
-	}
 	
-	public void removeChildren() {
-		this.children.removeAll(this.children);
+	public void removeChilderen() {
+		this.children.removeAll(children);
 	}
+
 }
