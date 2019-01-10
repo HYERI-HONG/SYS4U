@@ -1,7 +1,7 @@
 package kr.sys4u.filedir;
 
 
-public class FileTreeStringBuilderConveter implements Convertable<StringBuilder,FileTree> {
+public class FileTreeToStringBuilderConveter implements Convertable<FileTree, StringBuilder> {
 
 	private static final String CRNL = "\r\n";
 	private static final String SPACE = "    ";
@@ -9,7 +9,7 @@ public class FileTreeStringBuilderConveter implements Convertable<StringBuilder,
 
 	private final StringBuilder converted;
 
-	public FileTreeStringBuilderConveter() {
+	public FileTreeToStringBuilderConveter() {
 		this.converted = new StringBuilder();
 	}
 	
