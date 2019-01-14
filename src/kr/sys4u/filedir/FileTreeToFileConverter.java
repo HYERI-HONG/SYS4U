@@ -15,27 +15,11 @@ public class FileTreeToFileConverter implements Convertable<FileTree, File> {
 
 		File file = new File(SAVE_PATH);
 
-		/*
-		 * try (FileWriter writer = new FileWriter(file, false)) { //try with resources
-		 * -> auto closerable writer.write(source.toString()); writer.flush(); } catch
-		 * (IOException e) { throw new ConversionException(e); }
-		 */
-
-		FileWriter writer = null;
-		try {
-			writer = new FileWriter(file, false);
+		try (FileWriter writer = new FileWriter(file, false)) {
 			writer.write(source.toString());
 			writer.flush();
 		} catch (IOException e) {
 			throw new ConversionException(e);
-		} finally {
-			if (writer != null) {
-				try {
-					writer.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
 		}
 
 		return file;

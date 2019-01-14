@@ -8,7 +8,7 @@ public class FileTree {
 	private boolean initialized = false;
 	
 	private static final String CRNL = "\r\n";
-	private static final String SPACE = "    ";
+	private static final String SPACE = "  ";
 	private static final String CHILD_SYMBOL = "└";
 
 	public FileTree(final String rootDirPath) {
