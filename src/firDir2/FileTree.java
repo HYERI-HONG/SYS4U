@@ -1,4 +1,4 @@
-package kr.sys4u.filedir;
+package firDir2;
 
 import java.io.File;
 
@@ -51,6 +51,7 @@ public class FileTree {
 
 		File[] childrenFiles = parentNode.getFile().listFiles();
 		int depth = parentNode.getDepth();
+	
 
 		for (File child : childrenFiles) {
 			if(child.isFile()) {

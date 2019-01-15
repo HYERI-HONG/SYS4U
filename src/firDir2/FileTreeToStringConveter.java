@@ -1,4 +1,4 @@
-package kr.sys4u.filedir;
+package firDir2;
 
 public class FileTreeToStringConveter implements Convertable<FileTree,String> {
 

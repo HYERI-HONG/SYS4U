@@ -1,4 +1,4 @@
-package kr.sys4u.filedir.exception;
+package firDir2.exception;
 
 public class NoSuchConverterException extends RuntimeException {
 	private static final long serialVersionUID = -3877659211243347185L;

@@ -1,9 +1,9 @@
-package kr.sys4u.filedir;
+package firDir2;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import kr.sys4u.filedir.exception.NoSuchConverterException;
+import firDir2.exception.NoSuchConverterException;
 
 public class ConvertManager {
 

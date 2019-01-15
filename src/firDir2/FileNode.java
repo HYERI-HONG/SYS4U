@@ -1,4 +1,4 @@
-package kr.sys4u.filedir;
+package firDir2;
 
 import java.io.File;
 import java.util.ArrayList;

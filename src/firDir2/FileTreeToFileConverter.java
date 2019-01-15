@@ -1,14 +1,14 @@
-package kr.sys4u.filedir;
+package firDir2;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import kr.sys4u.filedir.exception.ConversionException;
+import firDir2.exception.ConversionException;
 
 public class FileTreeToFileConverter implements Convertable<FileTree, File> {
 
-	private static final String SAVE_PATH = "C:/Users/notebiz7750/Downloads/FileConverter/ConvertResult.txt";
+	private static final String SAVE_PATH = "C:/Users/hyeri/Desktop/test";
 
 	@Override
 	public File convert(FileTree source) {
