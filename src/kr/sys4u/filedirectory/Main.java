@@ -40,6 +40,12 @@ public class Main {
 		//System.out.println(manager.requestConvert(fileTree, File.class).toString());
 		
 		
+		// 과제 3
+		FileCopyExcutant fileCopy = new FileCopyExcutant("C:/test/Apartment", "C:/test/Apartment2");
+
+		// fileCopy.Copy();
+		// fileCopy.move();
+		fileCopy.copyDirectoryStructure();
 	
 
 		
