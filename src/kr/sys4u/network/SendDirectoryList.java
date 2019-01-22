@@ -7,13 +7,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class MakeDirectoryList {
+public class SendDirectoryList {
 
 	private ArrayList<FileObject> DirectoryList;
 	private String rootDirectoryPath;
 	private FileObject fileObject;
 
-	public MakeDirectoryList() {
+	public SendDirectoryList() {
 		this.DirectoryList = new ArrayList<FileObject>();
 	}
 
@@ -31,12 +31,13 @@ public class MakeDirectoryList {
 	}
 
 	public void checkAllFileRecursively(File parentFile) {
-
+		//첫번째로 보낼 값 : File인지 Directory인지 구분자
 		String parentPath = parentFile.getAbsolutePath().replace(rootDirectoryPath, "");
 
 		for (File childFile : parentFile.listFiles()) {
 
 			if (childFile.isDirectory()) {
+				
 				addDirectory(childFile, parentPath);
 				checkAllFileRecursively(childFile);
 			} else {
@@ -51,7 +52,7 @@ public class MakeDirectoryList {
 		fileObject.setPath(parentPath + File.separator + childFile.getName());
 		fileObject.setType("D");
 
-		if (findLeaf(childFile)) {
+		if (IsLeaf(childFile)) {
 			DirectoryList.add(fileObject);
 		}
 	}
@@ -77,7 +78,7 @@ public class MakeDirectoryList {
 
 	}
 
-	private boolean findLeaf(File file) {
+	private boolean IsLeaf(File file) {
 
 		boolean check = true;
 

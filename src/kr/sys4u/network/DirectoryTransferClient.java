@@ -1,7 +1,7 @@
 package kr.sys4u.network;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class DirectoryTransferClient {
@@ -12,10 +12,14 @@ public class DirectoryTransferClient {
 		String serverAddress = "127.0.0.1";
 
 		try (Socket socket = new Socket(serverAddress, serverPortNum);
-				ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());) {
+				DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
-			out.writeObject(new MakeDirectoryList().getDirectoryList("D:/apartment"));
-			out.flush();
+		) {
+
+			SendDirectoryList sendDirectoryList = new SendDirectoryList();
+
+			// out.writeObject(new SendDirectoryList().getDirectoryList("D:/apartment"));
+			// out.flush();
 
 		} catch (IOException e) {
 
