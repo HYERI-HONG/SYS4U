@@ -1,36 +1,42 @@
 package kr.sys4u.network;
 
-import java.io.Serializable;
+public class FileObject {
 
-public class FileObject implements Serializable {
+	private String dirPath;
+	private String fileType;
+	private String fileName;
+	private byte[] fileData;
 
-	private static final long serialVersionUID = -4933012608523195041L;
-	
-	private String path;
-	private String type;
-	private byte[] data;
-
-	public String getPath() {
-		return path;
+	public String getFileName() {
+		return fileName;
 	}
 
-	public void setPath(String path) {
-		this.path = path;
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
-	public String getType() {
-		return type;
+	public String getDirPath() {
+		return dirPath;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setDirPath(String dirPath) {
+		this.dirPath = dirPath;
 	}
 
-	public byte[] getData() {
-		return data;
+	public String getFileType() {
+		return fileType;
 	}
 
-	public void setData(byte[] data) {
-		this.data = data;
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
 	}
+
+	public byte[] getFileData() {
+		return fileData;
+	}
+
+	public void setFileData(byte[] fileData) {
+		this.fileData = fileData;
+	}
+
 }
