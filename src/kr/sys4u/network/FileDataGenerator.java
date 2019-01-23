@@ -14,10 +14,12 @@ public class FileDataGenerator {
 			throw new IllegalArgumentException();
 		}
 		
-		byte[] fileData = new byte[4000];
 		
+		File file = new File(fileDirPath);
+		byte[] fileData = new byte[4096];
+
 		try (BufferedInputStream inputStream = new BufferedInputStream(
-				new FileInputStream(new File(fileDirPath)));
+				new FileInputStream(file));
 		) {
 			
 			inputStream.read(fileData);

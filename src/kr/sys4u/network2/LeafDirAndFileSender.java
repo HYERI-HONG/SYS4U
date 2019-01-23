@@ -1,4 +1,4 @@
-package kr.sys4u.network;
+package kr.sys4u.network2;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -12,7 +12,7 @@ public class LeafDirAndFileSender {
 
 		int serverPortNum = 9000;
 		String serverAddress = "127.0.0.1";
-		String dirPath = "D:/apartment";
+		String dirPath = "C:/test";
 
 		try (Socket socket = new Socket(serverAddress, serverPortNum);
 				DataOutputStream out = new DataOutputStream(socket.getOutputStream());
@@ -30,10 +30,11 @@ public class LeafDirAndFileSender {
 				if(leaf.getFileType().equals("F")) {
 					String requestFilePath = in.readUTF();
 					
-					out.write(new FileDataGenerator().getFileData(dirPath + requestFilePath));
-					out.flush();
+					FileDataSender fileDataSender = new FileDataSender(out);
+					fileDataSender.sendFile(dirPath + requestFilePath);
 				}	
 			}
+
 		} catch (IOException e) {
 
 		}

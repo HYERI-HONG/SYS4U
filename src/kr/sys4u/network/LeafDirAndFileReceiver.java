@@ -14,7 +14,7 @@ public class LeafDirAndFileReceiver {
 	public static void main(String args[]) {
 
 		int portNumber = 9000;
-		String dirPath = "E:/test/server/apartment";
+		String dirPath = "D:/apartment2";
 
 		try (ServerSocket serverSocket = new ServerSocket(portNumber);
 				Socket clientSocket = serverSocket.accept();
@@ -36,11 +36,14 @@ public class LeafDirAndFileReceiver {
 					out.writeUTF(controlInfo[1] + File.separator + controlInfo[2]);
 					out.flush();
 
-					byte[] fileData = new byte[4000];
+
+					byte[] fileData = new byte[4096];
+
 					BufferedOutputStream outStream = new BufferedOutputStream(
 							new FileOutputStream(new File(dirPath + controlInfo[1] + File.separator + controlInfo[2])));
 
 					in.read(fileData);
+
 					outStream.write(fileData);
 					outStream.flush();
 					outStream.close();
