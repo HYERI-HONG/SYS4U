@@ -8,12 +8,14 @@ public class LeafDirAndFileCollector {
 	private ArrayList<Leaf> leafList;
 	private String rootDirectoryPath;
 	private Leaf leaf;
+	private int fileLeafCnt;
 
 	public LeafDirAndFileCollector() {
 		this.leafList = new ArrayList<Leaf>();
+		this.fileLeafCnt = 0;
 	}
 
-	public ArrayList<Leaf> getDirectoryList(String rootDirectoryPath) {
+	public void setDirectoryList(String rootDirectoryPath) {
 
 		if (rootDirectoryPath == null) {
 			throw new IllegalArgumentException();
@@ -24,6 +26,9 @@ public class LeafDirAndFileCollector {
 		
 		checkAllFileRecursively(rootFile);
 
+	}
+
+	public ArrayList<Leaf> getDirectoryList() {
 		return leafList;
 	}
 
@@ -45,7 +50,6 @@ public class LeafDirAndFileCollector {
 
 	private void addDirectory(File childFile, String parentPath) {
 
-		
 		if (childFile.listFiles().length == 0) {
 			leaf = new Leaf();
 			leaf.setDirPath(parentPath + File.separator + childFile.getName());
@@ -62,7 +66,25 @@ public class LeafDirAndFileCollector {
 		leaf.setFileType("F");
 		leafList.add(leaf);
 
-
+		fileLeafCnt++;
 	}
+
+	public int getFileLeafCnt() {
+		return fileLeafCnt;
+	}
+
+	public String DirectoryListToString() {
+
+		String result = "";
+
+		for (int i = 0; i < leafList.size(); i++) {
+			String temp = leafList.get(i).getFileType() + "\t" + leafList.get(i).getDirPath() + "\t"
+					+ leafList.get(i).getFileName();
+			result += temp + ((i == leafList.size() - 1) ? "" : "\n");
+		}
+		return result;
+	}
+
+
 
 }

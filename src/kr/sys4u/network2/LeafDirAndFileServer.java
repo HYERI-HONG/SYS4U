@@ -4,13 +4,13 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-public class LeafDirAndFileReceiver implements Closeable {
+public class LeafDirAndFileServer implements Closeable {
 
 	private int port = 9000;
 	ServerSocket serverSocket;
 	boolean initialized = false;
 
-	public LeafDirAndFileReceiver(int port) {
+	public LeafDirAndFileServer(int port) {
 		this.port = port;
 	}
 
@@ -20,7 +20,6 @@ public class LeafDirAndFileReceiver implements Closeable {
 		}
 		this.serverSocket = new ServerSocket(port);
 		initialized = true;
-
 	}
 
 	private void execute() throws IOException {
@@ -38,7 +37,6 @@ public class LeafDirAndFileReceiver implements Closeable {
 			}
 		}
 	}
-
 	@Override
 	public void close() throws IOException {
 		if (!initialized) {
@@ -49,7 +47,7 @@ public class LeafDirAndFileReceiver implements Closeable {
 
 	public static void main(String args[]) throws IOException {
 
-		LeafDirAndFileReceiver server = new LeafDirAndFileReceiver(9000);
+		LeafDirAndFileServer server = new LeafDirAndFileServer(9000);
 
 		server.initialize();
 		server.execute();
