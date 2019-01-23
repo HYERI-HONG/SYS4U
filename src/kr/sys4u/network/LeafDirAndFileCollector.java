@@ -3,17 +3,17 @@ package kr.sys4u.network;
 import java.io.File;
 import java.util.ArrayList;
 
-public class MakeDirectoryList {
+public class LeafDirAndFileCollector {
 
-	private ArrayList<FileObject> DirectoryList;
+	private ArrayList<Leaf> leafList;
 	private String rootDirectoryPath;
-	private FileObject fileObject;
+	private Leaf leaf;
 
-	public MakeDirectoryList() {
-		this.DirectoryList = new ArrayList<FileObject>();
+	public LeafDirAndFileCollector() {
+		this.leafList = new ArrayList<Leaf>();
 	}
 
-	public ArrayList<FileObject> getDirectoryList(String rootDirectoryPath) {
+	public ArrayList<Leaf> getDirectoryList(String rootDirectoryPath) {
 
 		if (rootDirectoryPath == null) {
 			throw new IllegalArgumentException();
@@ -24,7 +24,7 @@ public class MakeDirectoryList {
 		
 		checkAllFileRecursively(rootFile);
 
-		return DirectoryList;
+		return leafList;
 	}
 
 	public void checkAllFileRecursively(File parentFile) {
@@ -45,22 +45,22 @@ public class MakeDirectoryList {
 
 	private void addDirectory(File childFile, String parentPath) {
 
+		
 		if (childFile.listFiles().length == 0) {
-			fileObject = new FileObject();
-			fileObject.setDirPath(parentPath + File.separator + childFile.getName());
-			fileObject.setFileType("D");
-			DirectoryList.add(fileObject);
+			leaf = new Leaf();
+			leaf.setDirPath(parentPath + File.separator + childFile.getName());
+			leaf.setFileType("D");
+			leafList.add(leaf);
 		}
 	}
 
 	private void addFile(File childFile, String parentPath) {
 
-
-		fileObject = new FileObject();
-		fileObject.setDirPath(parentPath);
-		fileObject.setFileName(childFile.getName());
-		fileObject.setFileType("F");
-		DirectoryList.add(fileObject);
+		leaf = new Leaf();
+		leaf.setDirPath(parentPath);
+		leaf.setFileName(childFile.getName());
+		leaf.setFileType("F");
+		leafList.add(leaf);
 
 
 	}

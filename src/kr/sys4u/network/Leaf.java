@@ -1,11 +1,10 @@
 package kr.sys4u.network;
 
-public class FileObject {
+public class Leaf {
 
 	private String dirPath;
 	private String fileType;
 	private String fileName;
-	private byte[] fileData;
 
 	public String getFileName() {
 		return fileName;
@@ -29,14 +28,6 @@ public class FileObject {
 
 	public void setFileType(String fileType) {
 		this.fileType = fileType;
-	}
-
-	public byte[] getFileData() {
-		return fileData;
-	}
-
-	public void setFileData(byte[] fileData) {
-		this.fileData = fileData;
 	}
 
 }
