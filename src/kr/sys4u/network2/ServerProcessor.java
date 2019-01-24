@@ -25,6 +25,7 @@ public class ServerProcessor {
 			for (String control : controlArray) {
 				String[] controlInfo = control.split("\t");
 
+
 				new File(dirPath + controlInfo[1]).mkdirs();
 
 				if (controlInfo[0].equals("F")) {

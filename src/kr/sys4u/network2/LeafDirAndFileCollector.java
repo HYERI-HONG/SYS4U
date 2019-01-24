@@ -60,6 +60,7 @@ public class LeafDirAndFileCollector {
 
 	private void addFile(File childFile, String parentPath) {
 
+
 		leaf = new Leaf();
 		leaf.setDirPath(parentPath);
 		leaf.setFileName(childFile.getName());
@@ -76,6 +77,7 @@ public class LeafDirAndFileCollector {
 	public String DirectoryListToString() {
 
 		String result = "";
+
 
 		for (int i = 0; i < leafList.size(); i++) {
 			String temp = leafList.get(i).getFileType() + "\t" + leafList.get(i).getDirPath() + "\t"
