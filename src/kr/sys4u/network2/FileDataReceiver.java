@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class FileDataReceiver {
 
-	private final String dirPath = "D:/after";
+	private final String dirPath = "D:/server";
 	private DataOutputStream out;
 	private DataInputStream in;
 

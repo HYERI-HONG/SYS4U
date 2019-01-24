@@ -30,7 +30,11 @@ public class LeafDirAndFileServer implements Closeable {
 		while (true) {
 			try {
 				System.out.println("소켓 접속 대기중");
-					new ServerProcessor(serverSocket.accept()).process();
+
+				Runnable serverProcess = new ServerProcessor(serverSocket.accept());
+				Thread thread = new Thread(serverProcess);
+				thread.start();
+
 				System.out.println("소켓 접속 종료");
 			} catch (IOException e) {
 
